@@ -5,6 +5,8 @@
 
 // var blackPantherGame = {
     
+    var dashArray = [];
+    var dashes;
 //     wakandaForever: function() {
 //         alert("WAKANDA FOREVER");
 //     },
@@ -13,7 +15,18 @@ var gameWords = ["shuri","bas","panther","marvel"]
 var blankSpots=[];
 var randomWord = gameWords[Math.floor(Math.random() * gameWords.length)];
 
+function DX() {
+    
+    for (let i = 0; i < randomWord.length; i++) {
+        dashArray.push("_");
+    }
+    dashes = dashArray.splice(",").join("");
+    console.log(dashes.length);
+    console.log(randomWord.length);
+    $('#wordDiv').html("<h1>" + dashes + "</h1>");
+}
 
+DX();
 
 //get randome word 
 
