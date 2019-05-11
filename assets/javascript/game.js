@@ -5,28 +5,34 @@
 
 // var blackPantherGame = {
     
-    var dashArray = [];
-    var dashes;
+    
 //     wakandaForever: function() {
 //         alert("WAKANDA FOREVER");
 //     },
 // };
+var dashArray = [];
+var dashes;
+var wins = 0;
+var guesses = 9;
 var gameWords = ["shuri","bas","panther","marvel"]
 var blankSpots=[];
 var randomWord = gameWords[Math.floor(Math.random() * gameWords.length)];
+console.log(randomWord)
 
-function DX() {
+function createDashes() {
     
     for (let i = 0; i < randomWord.length; i++) {
         dashArray.push("_");
+        blankSpots.push("_");
     }
-    dashes = dashArray.splice(",").join("");
-    console.log(dashes.length);
-    console.log(randomWord.length);
-    $('#wordDiv').html("<h1>" + dashes + "</h1>");
+    dashArray = dashArray.splice(",").join("");
+
+    // console.log(dashes.length);
+    // console.log(randomWord.length);
+    $('#wordDiv').html("<h1>" + dashArray + "</h1>");
 }
 
-DX();
+createDashes();
 
 //get randome word 
 
@@ -43,10 +49,8 @@ DX();
 //     }
 // }
 document.onkeyup = function(event) {
-    var wins = 0;
-    var guesses = 9;
     var letter = event.key.toLocaleLowerCase();
-    console.log(letter);
+    // console.log(letter);
     letterCheck(letter);
     // for ()
 
@@ -78,21 +82,22 @@ document.onkeyup = function(event) {
     // }
 };
 
-function letterCheck (letter, wins, guesses){
-    console.log(letter);
+function letterCheck (letter, guesses){
+    // console.log(letter);
 
     for(i=0;i<randomWord.length;i++){
         if (letter === randomWord.charAt(i)){
-            console.log(true);
+            // console.log(true);
             blankSpots[i] = letter;
-            document.getElementById("wordDiv").innerHTML = blankSpots.join("");
+            console.log(blankSpots)
+            document.getElementById("wordDiv").innerHTML = "<h1>" + blankSpots.join("") + "</h1>";
             
         } else {
-            console.log(false);
+            // console.log(false);
+            guesses--;
+            console.log(guesses);
         }
-        // if (blankSpots === randomWord[i]){
-        //     document.getElementById("winText").innerHTML = "You win!";
-        // }
+        
     }
 }
 letterCheck();
