@@ -19,6 +19,9 @@ var blankSpots=[];
 var randomWord = gameWords[Math.floor(Math.random() * gameWords.length)];
 console.log(randomWord)
 
+document.getElementById("winText").innerHTML = "Wins: " + wins;
+document.getElementById("guessText").innerHTML = "Guesses: " + guesses;
+
 function createDashes() {
     
     for (let i = 0; i < randomWord.length; i++) {
@@ -82,7 +85,7 @@ document.onkeyup = function(event) {
     // }
 };
 
-function letterCheck (letter, guesses){
+function letterCheck (letter){
     // console.log(letter);
 
     for(i=0;i<randomWord.length;i++){
@@ -92,12 +95,14 @@ function letterCheck (letter, guesses){
             console.log(blankSpots)
             document.getElementById("wordDiv").innerHTML = "<h1>" + blankSpots.join("") + "</h1>";
             
-        } else {
-            // console.log(false);
+        }
+            
+            
+        }   
+        if (letter !== randomWord.charAt(i)){
             guesses--;
+            document.getElementById("guessText").innerHTML = "Guesses: " + guesses;
             console.log(guesses);
         }
-        
-    }
+    
 }
-letterCheck();
